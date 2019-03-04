@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<script type="text/javascript">
+		window.addEventListener('load', () => {
+			console.log('loaded test');
+			window.addEventListener('beforeunload', e => {
+				console.log('before unload test');
+				e.preventDefault();
+				e.returnValue = 'Blah';
+			});
+		});
+		window.addEventListener('pageshow', function(event) {
+			console.log('onpageshow');
+			console.dir(event);
+			console.log(window.performance.navigation.type);
+		});
+		window.addEventListener('pagehide', function(event) {
+			console.log('onpagehide');
+			console.dir(event);
+		});
+	</script>
+</head>
+<body>
+	<a href="/">Go to index</a>
+	<iframe style="height:0px;width:0px;visibility:hidden" src="about:blank">
+    this frame prevents back forward cache
+</iframe>
+</body>
+</html>
