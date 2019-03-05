@@ -12,8 +12,10 @@
 			});
 		});
 		window.addEventListener('pageshow', function(event) {
+			const log = document.getElementById('log');
 			console.log('onpageshow');
 			console.dir(event);
+			log.innerHTML = 'event.persisted is ' + event.persisted;
 			console.log(window.performance.navigation.type);
 		});
 		window.addEventListener('pagehide', function(event) {
@@ -23,9 +25,8 @@
 	</script>
 </head>
 <body>
-	<a href="/">Go to index</a>
-	<iframe style="height:0px;width:0px;visibility:hidden" src="about:blank">
-    this frame prevents back forward cache
-</iframe>
+	<h2>PageTransitionEvent.persisted test</h2>
+	<a href="index.html">Go to index</a>
+	<p id="log"></p>
 </body>
 </html>
